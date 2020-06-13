@@ -1,0 +1,21 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Docker ps</title>
+</head>
+<body>
+    {{ range .containers }}
+    <div>
+        <h3>ID {{ .ID }}</h3>
+        <ul>
+            <li>Image: {{ .Image }}</li>
+            <li>Command: {{ .Command }}</li>
+            <li>Created: {{ .Created }}</li>
+            <li>Status: {{ .Status }}</li>
+            <li>Ports: {{ .Ports }}</li>
+            <li>Names: {{ .Names }}</li>
+        </ul>
+    </div>
+    {{end}}
+</body>
+</html>
