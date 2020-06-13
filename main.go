@@ -42,6 +42,7 @@ func getContainers(docker *client.Client) (result []map[string]string) {
 	if err != nil {
 		fmt.Println("Failed at getting container list")
 		fmt.Println(err)
+		return
 	}
 
 	for _, container := range containers {
