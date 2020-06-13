@@ -38,7 +38,7 @@ func main() {
 func getContainers(docker *client.Client) (result []map[string]string) {
 	result = make([]map[string]string, 0)
 
-	containers, err := docker.ContainerList(context.Background(), types.ContainerListOptions{})
+	containers, err := docker.ContainerList(context.Background(), types.ContainerListOptions{All: true})
 	if err != nil {
 		fmt.Println("Failed at getting container list")
 		fmt.Println(err)
