@@ -48,14 +48,14 @@ func getContainers(docker *client.Client) (result []map[string]string) {
 
 	for _, container := range containers {
 		local := map[string]string{
-			"Image":   container.Image,
-			"ID":      container.ID[0:12],
-			"Command": container.Command,
-			"Created": formatUnixDate(container.Created),
-			"Status":  container.Status,
-			"Ports":   formatPortArray(container.Ports),
-			"Names":   formatStringArray(container.Names),
-			"StatusTitle":  strings.Split(container.Status, " ")[0],
+			"Image":       container.Image,
+			"ID":          container.ID[0:12],
+			"Command":     container.Command,
+			"Created":     formatUnixDate(container.Created),
+			"Status":      container.Status,
+			"Ports":       formatPortArray(container.Ports),
+			"Names":       formatStringArray(container.Names),
+			"StatusTitle": strings.Split(container.Status, " ")[0],
 		}
 
 		result = append(result, local)

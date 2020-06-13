@@ -4,17 +4,23 @@
     <title>Docker ps</title>
     <style>
         .info-wrapper {
+            display: block;
+        }
+        .info-frame {
             display: inline-block;
-            font-family: monospace;
-            margin: 0.3em;
-            padding: 1em 2em;
-            border: 2px solid #dddddd;
 
-            background-color: #edf3fc;
+            max-width: 30em;
+            margin: 0 auto;
+            padding: 1em 2em;
+
+            font-family: monospace;
+            border: 2px solid #aaa;
+
+            background-color: #f0f0f0;
          }
         .container-id {
             font-size: 1.3em;
-            border-bottom: 1px solid #c9d9f0;
+            border-bottom: 1px solid #aaa;
 
             margin: 0.3em;
             margin-top: 0em;
@@ -26,38 +32,50 @@
             text-align: end;
             font-weight: bold;
         }
+        .content-date{
+            word-break: break-word;
+        }
+
+        .info-frame[status="Up"] {
+            background-color: #aaf0b8;
+        }
+        .info-frame[status="Exited"] {
+            background-color: #ffd1d1; 
+        }
     </style>
 </head>
 <body>
 {{ range .containers }}
-    <div class="info-wrapper" status="{ .StatusTitle }}">
+    <div class="info-wrapper">
+        <div class="info-frame" status="{{ .StatusTitle }}">
         <h1 class="container-id">ID: {{ .ID }}</h1>
         <table>
             <tr>
                 <td class="content-title">Image: </td>
-                <td>{{ .Image  }}</td>
+                <td class="content-date">{{ .Image  }}</td>
             </tr>
             <tr>
                 <td class="content-title">Command: </td>
-                <td>{{ .Command }}</td>
+                <td class="content-date">{{ .Command }}</td>
             </tr>
             <tr>
                 <td class="content-title">Created: </td>
-                <td>{{ .Created }}</td>
+                <td class="content-date">{{ .Created }}</td>
             </tr>
             <tr>
                 <td class="content-title">Status: </td>
-                <td>{{ .Status  }}</td>
+                <td class="content-date">{{ .Status  }}</td>
             </tr>
             <tr>
                 <td class="content-title">Ports: </td>
-                <td>{{ .Ports }}</td>
+                <td class="content-date">{{ .Ports }}</td>
             </tr>
             <tr>
                 <td class="content-title">Names: </td>
-                <td>{{ .Names  }}</td>
+                <td class="content-date">{{ .Names  }}</td>
             </tr>
         </table>
+    </div>
     </div>
 {{ end }}
 </body>
