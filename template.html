@@ -7,7 +7,7 @@
             display: inline-block;
             font-family: monospace;
             margin: 0.3em;
-            padding: 0em 1em;
+            padding: 1em 2em;
             border: 2px solid #dddddd;
 
             background-color: #edf3fc;
@@ -15,8 +15,16 @@
         .container-id {
             font-size: 1.3em;
             border-bottom: 1px solid #c9d9f0;
+
+            margin: 0.3em;
+            margin-top: 0em;
+
             padding: 0.3em;
             padding-left: 0em;
+        }
+        .content-title {
+            text-align: end;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -26,27 +34,27 @@
         <h1 class="container-id">ID: {{ .ID }}</h1>
         <table>
             <tr>
-                <td>Image: </td>
+                <td class="content-title">Image: </td>
                 <td>{{ .Image  }}</td>
             </tr>
             <tr>
-                <td>Command: </td>
+                <td class="content-title">Command: </td>
                 <td>{{ .Command }}</td>
             </tr>
             <tr>
-                <td>Created: </td>
+                <td class="content-title">Created: </td>
                 <td>{{ .Created }}</td>
             </tr>
             <tr>
-                <td>Status: </td>
+                <td class="content-title">Status: </td>
                 <td>{{ .Status  }}</td>
             </tr>
             <tr>
-                <td>Ports: </td>
+                <td class="content-title">Ports: </td>
                 <td>{{ .Ports }}</td>
             </tr>
             <tr>
-                <td>Names: </td>
+                <td class="content-title">Names: </td>
                 <td>{{ .Names  }}</td>
             </tr>
         </table>
