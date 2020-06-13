@@ -4,7 +4,7 @@
     <title>Docker ps</title>
 </head>
 <body>
-    {{ range .containers }}
+{{ range .containers }}
     <div>
         <h3>ID {{ .ID }}</h3>
         <ul>
@@ -16,6 +16,6 @@
             <li>Names: {{ .Names }}</li>
         </ul>
     </div>
-    {{end}}
+{{ end }}
 </body>
 </html>
