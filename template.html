@@ -23,6 +23,9 @@
             font-weight: bold;
             font-size: 1.3em;
         }
+        .container-count {
+            font-size: 0.8em;
+        }
         .content-wrapper {
             margin: 1em;
             margin-top: 4.5em;
@@ -70,7 +73,8 @@
 </head>
 <body>
 <header class="header">
-    <span class="soft-title">Dockerps-web</span>
+    <div class="soft-title">Dockerps-web</div>
+    <div class="container-count">コンテナの数: {{ .container_count }}</div>
 </header>
 <div class="content-wrapper">
     {{ range .containers }}
