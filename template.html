@@ -3,6 +3,30 @@
     <meta charset="UTF-8">
     <title>Docker ps</title>
     <style>
+        body {
+            margin: 0;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            padding: 0.5em;
+            height: 3em;
+
+            background-color: #4c526e;
+            color: #ddd;
+        }
+        .soft-title {
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        .content-wrapper {
+            margin: 1em;
+            margin-top: 4.5em;
+        }
         .info-wrapper {
             display: block;
         }
@@ -12,7 +36,7 @@
             max-width: 30em;
             margin: 0 auto;
             padding: 1em 2em;
-
+ 
             font-family: monospace;
             border: 2px solid #aaa;
 
@@ -45,39 +69,44 @@
     </style>
 </head>
 <body>
-{{ range .containers }}
-    <div class="info-wrapper">
-        <div class="info-frame" status="{{ .StatusTitle }}">
-        <h1 class="container-id">ID: {{ .ID }}</h1>
-        <table>
-            <tr>
-                <td class="content-title">Image: </td>
-                <td class="content-date">{{ .Image  }}</td>
-            </tr>
-            <tr>
-                <td class="content-title">Command: </td>
-                <td class="content-date">{{ .Command }}</td>
-            </tr>
-            <tr>
-                <td class="content-title">Created: </td>
-                <td class="content-date">{{ .Created }}</td>
-            </tr>
-            <tr>
-                <td class="content-title">Status: </td>
-                <td class="content-date">{{ .Status  }}</td>
-            </tr>
-            <tr>
-                <td class="content-title">Ports: </td>
-                <td class="content-date">{{ .Ports }}</td>
-            </tr>
-            <tr>
-                <td class="content-title">Names: </td>
-                <td class="content-date">{{ .Names  }}</td>
-            </tr>
-        </table>
-    </div>
-    </div>
-{{ end }}
+<header class="header">
+    <span class="soft-title">Dockerps-web</span>
+</header>
+<div class="content-wrapper">
+    {{ range .containers }}
+        <div class="info-wrapper">
+            <div class="info-frame" status="{{ .StatusTitle }}">
+            <h1 class="container-id">ID: {{ .ID }}</h1>
+            <table>
+                <tr>
+                    <td class="content-title">Names: </td>
+                    <td class="content-date">{{ .Names  }}</td>
+                </tr>
+                <tr>
+                    <td class="content-title">Image: </td>
+                    <td class="content-date">{{ .Image  }}</td>
+                </tr>
+                <tr>
+                    <td class="content-title">Command: </td>
+                    <td class="content-date">{{ .Command }}</td>
+                </tr>
+                <tr>
+                    <td class="content-title">Created: </td>
+                    <td class="content-date">{{ .Created }}</td>
+                </tr>
+                <tr>
+                    <td class="content-title">Status: </td>
+                    <td class="content-date">{{ .Status  }}</td>
+                </tr>
+                <tr>
+                    <td class="content-title">Ports: </td>
+                    <td class="content-date">{{ .Ports }}</td>
+                </tr>
+            </table>
+            </div>
+        </div>
+    {{ end }}
+</div>
 </body>
 </html>
 

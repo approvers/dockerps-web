@@ -1,0 +1,42 @@
+diff --git a/main.go b/main.go
+index 3f7c744..8c20f7e 100644
+--- a/main.go
++++ b/main.go
+@@ -22,9 +22,16 @@ func main() {
+ 	router := gin.Default()
+ 	router.LoadHTMLFiles("./template.html")
+ 	router.GET("/", func(ctx *gin.Context) {
+-		ctx.HTML(200, "template.html", gin.H{
+-			"containers": getContainers(docker),
+-		})
++		containers, err := docker.ContainerList(context.Background(), types.ContainerListOptions{All: true})
++
++		if err != nil {
++			ctx.Status(500)
++		} else {
++			ctx.HTML(200, "template.html", gin.H{
++				"containers": formatContainers(containers),
++				"container_count": len(containers),
++			})
++		}
+ 	})
+ 
+ 	fmt.Println("Start Serving...")
+@@ -36,16 +43,7 @@ func main() {
+ 	}
+ }
+ 
+-func getContainers(docker *client.Client) (result []map[string]string) {
+-	result = make([]map[string]string, 0)
+-
+-	containers, err := docker.ContainerList(context.Background(), types.ContainerListOptions{All: true})
+-	if err != nil {
+-		fmt.Println("Failed at getting container list")
+-		fmt.Println(err)
+-		return
+-	}
+-
++func formatContainers(containers []types.Container) (result []map[string]string) {
+ 	for _, container := range containers {
+ 		local := map[string]string{
+ 			"Image":       container.Image,
