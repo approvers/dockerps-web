@@ -24,14 +24,32 @@
 {{ range .containers }}
     <div class="info-wrapper">
         <h1 class="container-id">ID: {{ .ID }}</h1>
-        <ul>
-            <li>Image: {{ .Image }}</li>
-            <li>Command: {{ .Command }}</li>
-            <li>Created: {{ .Created }}</li>
-            <li>Status: {{ .Status }}</li>
-            <li>Ports: {{ .Ports }}</li>
-            <li>Names: {{ .Names }}</li>
-        </ul>
+        <table>
+            <tr>
+                <td>Image: </td>
+                <td>{{ .Image  }}</td>
+            </tr>
+            <tr>
+                <td>Command: </td>
+                <td>{{ .Command }}</td>
+            </tr>
+            <tr>
+                <td>Created: </td>
+                <td>{{ .Created }}</td>
+            </tr>
+            <tr>
+                <td>Status: </td>
+                <td>{{ .Status  }}</td>
+            </tr>
+            <tr>
+                <td>Ports: </td>
+                <td>{{ .Ports }}</td>
+            </tr>
+            <tr>
+                <td>Names: </td>
+                <td>{{ .Names  }}</td>
+            </tr>
+        </table>
     </div>
 {{ end }}
 </body>
