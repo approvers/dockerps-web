@@ -7,6 +7,7 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/gin-gonic/gin"
 	"time"
+	"strings"
 )
 
 func main() {
@@ -54,6 +55,7 @@ func getContainers(docker *client.Client) (result []map[string]string) {
 			"Status":  container.Status,
 			"Ports":   formatPortArray(container.Ports),
 			"Names":   formatStringArray(container.Names),
+			"StatusTitle":  strings.Split(container.Status, " ")[0],
 		}
 
 		result = append(result, local)

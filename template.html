@@ -30,7 +30,7 @@
 </head>
 <body>
 {{ range .containers }}
-    <div class="info-wrapper">
+    <div class="info-wrapper" status="{ .StatusTitle }}">
         <h1 class="container-id">ID: {{ .ID }}</h1>
         <table>
             <tr>
