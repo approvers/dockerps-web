@@ -36,12 +36,13 @@ func main() {
 }
 
 func getContainers(docker *client.Client) (result []map[string]string) {
+	result = make([]map[string]string, 0)
+
 	containers, err := docker.ContainerList(context.Background(), types.ContainerListOptions{});
 	if err != nil {
 		fmt.Println("Failed at getting container list")
+		fmt.Println(err)
 	}
-
-	result = make([]map[string]string, 0)
 
 	for _, container := range containers {
 		local := map[string]string {

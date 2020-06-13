@@ -1,1 +1,4 @@
 .idea/
+
+# executable which built in docker container
+dockerps-web 
