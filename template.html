@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE HTML>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>Docker ps</title>
@@ -60,13 +61,13 @@
             font-weight: bold;
         }
         .content-date{
-            word-break: break-word;
+            word-break: break-all;
         }
 
-        .info-frame[status="Up"] {
+        .info-frame[data-status="Up"] {
             background-color: #aaf0b8;
         }
-        .info-frame[status="Exited"] {
+        .info-frame[data-status="Exited"] {
             background-color: #ffd1d1; 
         }
     </style>
@@ -79,7 +80,7 @@
 <div class="content-wrapper">
     {{ range .containers }}
         <div class="info-wrapper">
-            <div class="info-frame" status="{{ .StatusTitle }}">
+            <div class="info-frame" data-status="{{ .StatusTitle }}">
             <h1 class="container-id">ID: {{ .ID }}</h1>
             <table>
                 <tr>
