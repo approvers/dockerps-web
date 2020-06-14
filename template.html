@@ -1,117 +1,116 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Docker ps</title>
     <style>
-        body {
-            margin: 0;
-        }
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
+      body {
+          margin: 0;
+      }
+      .header {
+          position: fixed;
+          top: 0;
+          left: 0;
 
-            width: 100%;
+          width: 100%;
 
-            padding: 0.5em;
-            height: 3em;
+          padding: 0.5em;
+          height: 3em;
 
-            background-color: #4c526e;
-            color: #ddd;
-        }
-        .soft-title {
-            font-weight: bold;
-            font-size: 1.3em;
-        }
-        .container-count {
-            font-size: 0.8em;
-        }
-        .content-wrapper {
-            margin: 1em;
-            margin-top: 4.5em;
-        }
-        .info-wrapper {
-            display: block;
-        }
-        .info-frame {
-            display: inline-block;
+          background-color: #4c526e;
+          color: #ddd;
+      }
+      .soft-title {
+          font-weight: bold;
+          font-size: 1.3em;
+      }
+      .container-count {
+          font-size: 0.8em;
+      }
+      .content-wrapper {
+          margin: 1em;
+          margin-top: 4.5em;
+      }
+      .info-wrapper {
+          display: block;
+      }
+      .info-frame {
+          display: inline-block;
 
-            max-width: 30em;
-            margin: 0 auto;
-            padding: 1em 2em;
- 
-            font-family: monospace;
-            border: 2px solid #aaa;
+          max-width: 30em;
+          margin: 0 auto;
+          padding: 1em 2em;
 
-            background-color: #f0f0f0;
-         }
-        .container-id {
-            margin: 0.3em;
-            margin-top: 0em;
+          font-family: font-family: 'メイリオ', Meiryo,'Yu Gothic UI','ヒラギノ角ゴシック','Hiragino Sans','ヒラギノ明朝 ProN','Hiragino Mincho ProN',sans-serif;
+          border: 2px solid #aaa;
 
-            padding: 0.3em;
-            padding-left: 0em;
-            
-            font-size: 1.3em;
-            border-bottom: 1px solid #aaa;
-        }
-        .content-title {
-            text-align: end;
-            font-weight: bold;
-        }
-        .content-date{
-            word-break: break-all;
-        }
+          background-color: #f0f0f0;
+       }
+      .container-id {
+          margin: 0.3em;
+          margin-top: 0em;
 
-        .info-frame[data-status="Up"] {
-            background-color: #aaf0b8;
-        }
-        .info-frame[data-status="Exited"] {
-            background-color: #ffd1d1; 
-        }
+          padding: 0.3em;
+          padding-left: 0em;
+
+          font-size: 1.3em;
+          border-bottom: 1px solid #aaa;
+      }
+      .content-title {
+          text-align: end;
+          font-weight: bold;
+      }
+      .content-date{
+          word-break: break-all;
+      }
+
+      .info-frame[data-status="Up"] {
+          background-color: #aaf0b8;
+      }
+      .info-frame[data-status="Exited"] {
+          background-color: #ffd1d1;
+      }
     </style>
-</head>
-<body>
-<header class="header">
-    <div class="soft-title">Dockerps-web</div>
-    <div class="container-count">コンテナの数: {{ .container_count }}</div>
-</header>
-<div class="content-wrapper">
-    {{ range .containers }}
-        <div class="info-wrapper">
-            <div class="info-frame" data-status="{{ .StatusTitle }}">
-            <h1 class="container-id">ID: {{ .ID }}</h1>
-            <table>
-                <tr>
-                    <td class="content-title">Names: </td>
-                    <td class="content-date">{{ .Names  }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Image: </td>
-                    <td class="content-date">{{ .Image  }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Command: </td>
-                    <td class="content-date">{{ .Command }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Created: </td>
-                    <td class="content-date">{{ .Created }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Status: </td>
-                    <td class="content-date">{{ .Status  }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Ports: </td>
-                    <td class="content-date">{{ .Ports }}</td>
-                </tr>
-            </table>
-            </div>
+  </head>
+  <body>
+    <header class="header">
+      <div class="soft-title">Dockerps-web</div>
+      <div class="container-count">コンテナの数: {{ .container_count }}</div>
+    </header>
+    <div class="content-wrapper">
+      {{ range .containers }}
+      <div class="info-wrapper">
+        <div class="info-frame" data-status="{{ .StatusTitle }}">
+          <h1 class="container-id">ID: {{ .ID }}</h1>
+          <table>
+            <tr>
+              <td class="content-title">Names:</td>
+              <td class="content-date">{{ .Names }}</td>
+            </tr>
+            <tr>
+              <td class="content-title">Image:</td>
+              <td class="content-date">{{ .Image }}</td>
+            </tr>
+            <tr>
+              <td class="content-title">Command:</td>
+              <td class="content-date">{{ .Command }}</td>
+            </tr>
+            <tr>
+              <td class="content-title">Created:</td>
+              <td class="content-date">{{ .Created }}</td>
+            </tr>
+            <tr>
+              <td class="content-title">Status:</td>
+              <td class="content-date">{{ .Status }}</td>
+            </tr>
+            <tr>
+              <td class="content-title">Ports:</td>
+              <td class="content-date">{{ .Ports }}</td>
+            </tr>
+          </table>
         </div>
-    {{ end }}
-</div>
-</body>
+      </div>
+      {{ end }}
+    </div>
+  </body>
 </html>
-
