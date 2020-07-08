@@ -3,11 +3,12 @@ package main
 import (
 	"context"
 	"fmt"
+	"strings"
+	"time"
+
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 	"github.com/gin-gonic/gin"
-	"time"
-	"strings"
 )
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 			ctx.Status(500)
 		} else {
 			ctx.HTML(200, "template.html", gin.H{
-				"containers": formatContainers(containers),
+				"containers":      formatContainers(containers),
 				"container_count": len(containers),
 			})
 		}
@@ -73,9 +74,6 @@ func formatPortArray(array []types.Port) (result string) {
 	return
 }
 
-func formatStringArray(array []string) (result string) {
-	for _, v := range array {
-		result += fmt.Sprintf("%s, ", v)
-	}
-	return
+func formatStringArray(array []string) string {
+	return strings.Join(array, ", ")
 }
