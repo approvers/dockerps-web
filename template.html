@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Docker ps</title>
     <style>
+        :root {
+            --primary-color: #4c526e;
+            --bright-text-color: #f0f0f0;
+        }
+
         body {
             margin: 0;
         }
@@ -16,7 +21,7 @@
 
             height: 3em;
 
-            background-color: #4c526e;
+            background-color: var(--primary-color);
             color: #ddd;
 
             display: flex;
@@ -29,7 +34,7 @@
         }
         .container-count {
             margin-left: 1em;
-            font-size: 1.3em;
+            font-size: 0.8em;
         }
         main {
             max-width: 30em;
@@ -48,8 +53,8 @@
 
             overflow-x: scroll;
 
-            background-color: #f0f0f0;
-            box-shadow: #4c526e 2px 2px 2px;
+            background-color: var(--bright-text-color);
+            box-shadow: var(--primary-color) 2px 2px 2px;
          }
         .info-card .title {
             font-size: 2em;
@@ -58,8 +63,15 @@
             padding-top: 1em;
             font-size: 1em;
         }
+        details {
+            padding: 0.5em;
+            margin-top: 1em;
+
+            border-radius: 0.5em;
+            color: var(--bright-text-color);
+            background-color: var(--primary-color);
+        }
         summary {
-            padding-top: 1em;
             cursor: pointer;
         }
         th {
@@ -81,7 +93,7 @@
 <body>
 <header>
     <div class="soft-title">Dockerps-web</div>
-    <div class="container-count">Number of Containers: {{ .container_count }}</div>
+    <div class="container-count">{{ .container_count }} containers</div>
 </header>
 <main>
     {{ range .containers }}
