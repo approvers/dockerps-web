@@ -4,114 +4,133 @@
     <meta charset="UTF-8">
     <title>Docker ps</title>
     <style>
+        :root {
+            --primary-color: #4c526e;
+            --bright-text-color: #f0f0f0;
+        }
+
         body {
             margin: 0;
         }
-        .header {
+        header {
             position: fixed;
             top: 0;
             left: 0;
 
             width: 100%;
 
-            padding: 0.5em;
             height: 3em;
 
-            background-color: #4c526e;
+            background-color: var(--primary-color);
             color: #ddd;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .soft-title {
             font-weight: bold;
             font-size: 1.3em;
         }
         .container-count {
+            margin-left: 1em;
             font-size: 0.8em;
         }
-        .content-wrapper {
-            margin: 1em;
-            margin-top: 4.5em;
-        }
-        .info-wrapper {
-            display: block;
-        }
-        .info-frame {
-            display: inline-block;
-
+        main {
             max-width: 30em;
-            margin: 0 auto;
-            padding: 1em 2em;
+            margin: 5em auto;
+
+            display: flex;
+            flex-flow: column;
+        }
+        .info-card {
+            margin: 1em;
+            padding: 1em;
  
             font-family: monospace;
-            border: 2px solid #aaa;
+            border: 2px solid #202020;
+            border-radius: 1em;
 
-            background-color: #f0f0f0;
+            background-color: var(--bright-text-color);
+            box-shadow: var(--primary-color) 2px 2px 2px;
          }
-        .container-id {
-            margin: 0.3em;
-            margin-top: 0em;
+        .info-card .title {
+            overflow-x: scroll;
 
-            padding: 0.3em;
-            padding-left: 0em;
-            
-            font-size: 1.3em;
-            border-bottom: 1px solid #aaa;
+            font-size: 2em;
         }
-        .content-title {
+        .info-card .id {
+            padding-top: 1em;
+            font-size: 1em;
+        }
+        details {
+            padding: 0.5em;
+            margin-top: 1em;
+
+            border-radius: 0.5em;
+            color: var(--bright-text-color);
+            background-color: var(--primary-color);
+        }
+        summary {
+            cursor: pointer;
+        }
+        tr {
+            line-height: 1.5em;
+        }
+        th {
             text-align: end;
             font-weight: bold;
         }
-        .content-date{
+        td {
             word-break: break-all;
         }
 
-        .info-frame[data-status="Up"] {
-            background-color: #aaf0b8;
+        .info-card .title[data-status="Up"] {
+            color: #00a700;
         }
-        .info-frame[data-status="Exited"] {
-            background-color: #ffd1d1; 
+        .info-card .title[data-status="Exited"] {
+            color: #a70000; 
         }
     </style>
 </head>
 <body>
-<header class="header">
+<header>
     <div class="soft-title">Dockerps-web</div>
-    <div class="container-count">コンテナの数: {{ .container_count }}</div>
+    <div class="container-count">{{ .container_count }} containers</div>
 </header>
-<div class="content-wrapper">
+<main>
     {{ range .containers }}
-        <div class="info-wrapper">
-            <div class="info-frame" data-status="{{ .StatusTitle }}">
-            <h1 class="container-id">ID: {{ .ID }}</h1>
-            <table>
-                <tr>
-                    <td class="content-title">Names: </td>
-                    <td class="content-date">{{ .Names  }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Image: </td>
-                    <td class="content-date">{{ .Image  }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Command: </td>
-                    <td class="content-date">{{ .Command }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Created: </td>
-                    <td class="content-date">{{ .Created }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Status: </td>
-                    <td class="content-date">{{ .Status  }}</td>
-                </tr>
-                <tr>
-                    <td class="content-title">Ports: </td>
-                    <td class="content-date">{{ .Ports }}</td>
-                </tr>
-            </table>
-            </div>
+        <div class="info-card">
+            <div class="title" data-status="{{ .StatusTitle }}">{{ .Names }}</div>
+            <div class="id">ID: {{ .ID }}</div>
+            <details>
+                <summary>More Info:</summary>
+                <table>
+                    <tr>
+                        <th>Image:</th>
+                        <td>{{ .Image  }}</td>
+                    </tr>
+                    <tr>
+                        <th>Command:</th>
+                        <td>{{ .Command }}</td>
+                    </tr>
+                    <tr>
+                        <th>Created:</th>
+                        <td>{{ .Created }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status:</th>
+                        <td>{{ .Status  }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ports:</th>
+                        <td>{{ .Ports }}</td>
+                    </tr>
+                </table>
+            </details>
         </div>
     {{ end }}
-</div>
+</main>
 </body>
 </html>
 
