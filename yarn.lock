@@ -2,3 +2,7 @@
 # yarn lockfile v1
 
 
+"@approvers/dockerps-web-frontend@^0.1.0":
+  version "0.1.0"
+  resolved "https://npm.pkg.github.com/download/@approvers/dockerps-web-frontend/0.1.0/f443917ea53a6e89dd66aa877ad4b4fe554f1a4c30308627cb4a7c1da2f69710#9301e59fe95423cbe635a8133c2f927fc8092c5d"
+  integrity sha512-5PQRjeYEwkOsuqVz6ZvfL2x2ViqgYfXYPdkMEGqDoH1qdxfuYlQQjRq3oy+KjT86PfiErOiWZS3eEO9e7Ice+Q==
