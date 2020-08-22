@@ -1,4 +1,5 @@
 .idea/
+node_modules/
 
 # executable which built in docker container
 dockerps-web 
