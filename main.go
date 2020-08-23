@@ -8,6 +8,7 @@ import (
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,16 +23,14 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	router.LoadHTMLFiles("./template.html")
-	router.GET("/", func(ctx *gin.Context) {
+	router.Use(static.ServeRoot("/", "./node_modules/@approvers/dockerps-web-frontend/public"))
+	router.GET("/api.json", func(ctx *gin.Context) {
 		containers, err := docker.ContainerList(context.Background(), types.ContainerListOptions{All: true})
 
 		if err != nil {
 			ctx.Status(500)
 		} else {
-			ctx.HTML(200, "template.html", gin.H{
-				"containers":      formatContainers(containers),
-				"container_count": len(containers),
-			})
+			ctx.JSON(200, formatContainers(containers))
 		}
 	})
 
@@ -47,14 +46,14 @@ func main() {
 func formatContainers(containers []types.Container) (result []map[string]string) {
 	for _, container := range containers {
 		local := map[string]string{
-			"Image":       container.Image,
-			"ID":          container.ID[0:12],
-			"Command":     container.Command,
-			"Created":     formatUnixDate(container.Created),
-			"Status":      container.Status,
-			"Ports":       formatPortArray(container.Ports),
-			"Names":       formatStringArray(container.Names),
-			"StatusTitle": strings.Split(container.Status, " ")[0],
+			"image":        container.Image,
+			"id":           container.ID[0:12],
+			"command":      container.Command,
+			"created":      formatUnixDate(container.Created),
+			"status":       container.Status,
+			"ports":        formatPortArray(container.Ports),
+			"name":         formatStringArray(container.Names),
+			"status_title": strings.Split(container.Status, " ")[0],
 		}
 
 		result = append(result, local)
