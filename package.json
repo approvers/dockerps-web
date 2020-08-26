@@ -3,6 +3,6 @@
   "author": "Naoki Ikeguchi <root@siketyan.dev>",
   "repository": "git@github.com:approvers/dockerps-web.git",
   "dependencies": {
-    "@approvers/dockerps-web-frontend": "^0.1.0"
+    "@approvers/dockerps-web-frontend": "^0.2.0"
   }
 }
