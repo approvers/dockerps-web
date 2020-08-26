@@ -22,7 +22,6 @@ func main() {
 
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
-	router.LoadHTMLFiles("./template.html")
 	router.Use(static.ServeRoot("/", "./node_modules/@approvers/dockerps-web-frontend/public"))
 	router.GET("/api.json", func(ctx *gin.Context) {
 		containers, err := docker.ContainerList(context.Background(), types.ContainerListOptions{All: true})
