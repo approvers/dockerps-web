@@ -15,7 +15,7 @@ FROM golang
 RUN mkdir /src
 WORKDIR /src
 
-COPY main.go go.mod go.sum template.html ./
+COPY main.go go.mod go.sum ./
 COPY --from=frontend /src/node_modules ./
 
 RUN cd /src && go build -o main && rm main.go go.mod go.sum
